@@ -1,0 +1,34 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="MacK Korris">
+	<main>
+		<h1>MacK Korris</h1>
+		<p>A guy who copies and edits</p>
+		<nav>
+			<ul>
+				<li>
+					<a href="/blog">Blog</a>
+				</li>
+				<li>
+					<a href="/contact">Contact</a>
+				</li>
+			</ul>
+		</nav>
+	</main>
+</Layout>
+
+<style>
+	main {
+		padding: 1em;
+		display: grid;
+		place-items: center;
+		place-content: center;
+	}
+
+	ul {
+		display: flex;
+		gap: 1em;
+	}
+</style>

@@ -1,0 +1,56 @@
+---
+import './style.css';
+import Layout from "../../../layouts/Layout.astro";
+
+
+export async function getStaticPaths() {
+    const posts = await Astro.glob('../../../posts/*.md');
+    return posts.map(post => {
+        return {
+            params: {
+                slug: post.frontmatter.slug
+            },
+            props: {
+                post
+            }
+        }
+    });
+}
+
+const { Content, frontmatter, getHeadings, getHeaders } = Astro.props.post;
+---
+
+<Layout title={frontmatter.title}>
+    <main>
+        <section id="info">
+            <h1>{frontmatter.title}</h1>
+            <p>{new Date(frontmatter.date).toLocaleDateString()}</p>
+            <p>{frontmatter.author}</p>
+            <a href="/blog">Get out of here</a>
+        </section>
+        <article>
+            <Content />
+        </article>
+    </main>
+</Layout>
+
+
+<style>
+    main {
+        padding: 1em;
+        display: grid;
+        gap: 1em;
+        margin: 0 auto;
+        max-width: 1000px;
+    }
+     
+
+    article {
+        display: grid;
+        gap: .75rem;
+    }
+
+    img {
+        max-height: 100px;
+    }
+</style>

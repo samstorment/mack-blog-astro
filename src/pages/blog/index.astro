@@ -1,0 +1,110 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const allPosts = await Astro.glob('../../posts/*.md');
+const posts = allPosts.sort((p1, p2) => {
+    const date1 = p1.frontmatter.date;
+    const date2 = p2.frontmatter.date;
+
+    if (date1 === date2) return 0;
+    return date1 > date2 ? -1 : 1; 
+});
+---
+
+
+<Layout title="Blog">
+    <main>
+        <h1>Blog</h1>
+        <section>
+            {posts.map(p => {
+
+                return (
+                    <a class={`post ${p.frontmatter.thumbnail && 'has-thumbnail'}`} 
+                        href={`/blog/${p.frontmatter.slug}`} 
+                        style={p.frontmatter.thumbnail && `background-image: url(${p.frontmatter.thumbnail})`}
+                    >
+                        <h3>{p.frontmatter.title}</h3>
+                        <p>{new Date(p.frontmatter.date).toLocaleDateString()}</p>
+                        <p>{p.frontmatter.author}</p>
+                        <p class="preview">{p.frontmatter.preview}</p>
+                    </a>
+                )
+            })}
+        </section>
+        <a href="/">Get out of here</a>
+    </main>
+</Layout>
+
+
+<style>
+    main {
+        padding: 1em;
+        max-width: 1000px;
+        margin: 0 auto;
+        display: grid;
+        gap: 1em;
+    }
+
+    
+    section {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1em;
+    }
+
+    .post {
+        flex: 1;
+        padding: 1em;
+        outline: 1px solid black;
+        color: black;
+        text-decoration: none;
+        transition-property: scale;
+        transition-duration: 200ms;
+        transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+        transform-origin: center;
+        min-width: 250px;
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        background-size: cover;
+        text-shadow: 0 0 1em 0 gray;
+        background-position: center;
+    }
+
+    .post h3 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;  
+        overflow: hidden;
+    }
+
+    .post p {
+        white-space: nowrap;
+        object-fit: contain;
+    }
+
+    .post:hover {
+        box-shadow: 0 0 1em 0 gray;
+    }
+
+    .post:active {
+        scale: .95;
+    }
+
+    p.preview {
+        white-space: normal;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;  
+        overflow: hidden;
+        color: rgb(117, 117, 117);
+        margin-top: auto;
+    }
+
+    .has-thumbnail p,
+    .has-thumbnail h3 {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: white;
+        text-shadow: 1px 1px 3px black;
+    }
+</style>
