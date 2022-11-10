@@ -5,7 +5,7 @@
 <script lang="ts">
     import { onMount } from "svelte";
 
-    import { fly } from "svelte/transition";
+    import { fly, slide, scale, fade } from "svelte/transition";
 
     export let author: string;
     export let title: string;
@@ -18,27 +18,33 @@
 
     const rand = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1) + min);
 
+    let trans = { x: rand(-1000, 1000), y: rand(-1000, 1000), duration: rand(200, 800), delay: 0 };
+
     onMount(() => {
 
-        setTimeout(() => {
-            visible = true;
-            count++;
-        }, count * 250);
+        visible = true;
+
+        trans.delay = count++ * 40;
+
+        if (window.innerWidth < 1000) {
+            trans = { x: -500, y: 0, duration: 500, delay: count * 100  }
+        }
+
     })
 </script>
 
 {#if visible}
-<a class="post"
-    class:has-thumbnail={thumbnail} 
-    href={`/blog/${slug}`} 
-    style={thumbnail && `background-image: url(${thumbnail})`}
-    transition:fly={{x: rand(-500, 500), y: rand(-500, 500), delay: rand(0, 500), duration: rand(500, 1000)}}
->
-    <h3>{title}</h3>
-    <p>{new Date(date).toLocaleDateString()}</p>
-    <p>{author}</p>
-    <p class="preview">{preview}</p>
-</a>
+    <a class="post"
+        class:has-thumbnail={thumbnail} 
+        href={`/blog/${slug}`} 
+        style={thumbnail && `background-image: url(${thumbnail})`}
+        transition:fly|local={trans}
+    >
+        <h3>{title}</h3>
+        <p>{new Date(date).toLocaleDateString()}</p>
+        <p>{author}</p>
+        <p class="preview">{preview}</p>
+    </a>
 {/if}
 
 
@@ -53,13 +59,13 @@
         transition-duration: 200ms;
         transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
         transform-origin: center;
-        min-width: 250px;
         display: flex;
         flex-direction: column;
         background-color: white;
         background-size: cover;
         text-shadow: 0 0 1em 0 gray;
         background-position: center;
+        min-width: 250px;
     }
 
     .post h3 {
@@ -89,7 +95,7 @@
         -webkit-box-orient: vertical;  
         overflow: hidden;
         color: rgb(117, 117, 117);
-        margin-top: auto;
+        /* margin-top: auto; */
     }
 
     .has-thumbnail p,
