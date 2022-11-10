@@ -13,11 +13,11 @@ const posts = allPosts.sort((p1, p2) => {
 ---
 
 
-<Layout title="Blog">
+<Layout title="Blog" type="blog" description="The blog posts of MacK Korris">
     <main>
         <h1>Blog</h1>
         <section>
-            {posts.map(p => <Post {...p.frontmatter } client:idle />)}
+            {posts.map(p => <Post {...p.frontmatter } client:load />)}
         </section>
     </main>
 </Layout>
