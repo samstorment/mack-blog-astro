@@ -2,7 +2,7 @@
 import Post from "../../components/Post.svelte";
 import Layout from "../../layouts/Layout.astro";
 
-const allPosts = await Astro.glob('../../posts/*.md');
+const allPosts = await Astro.glob('../../_posts/*.md');
 const posts = allPosts.sort((p1, p2) => {
     const date1 = p1.frontmatter.date;
     const date2 = p2.frontmatter.date;

@@ -3,22 +3,81 @@ import Layout from "../../layouts/Layout.astro"
 ---
 
 
-
-<Layout title="Contact MacK">
+<Layout title="Contact MacK Korris" description="Get in touch with MacK">
     <main>
         <h1>Contact Info</h1>
-        <p>MacK Korris</p>
-        <p>mack@mail.com</p>
-        <a href="/">Back</a>
+        <section id="info">
+            <h2>MacK Korris</h2>
+            <div id="contact-links">
+                <a href="mailto:mack@mail.com" target="_blank" rel="noreferrer">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>mack@mail.com</span>
+                </a>
+                <a href="https://www.twitter.com" target="_blank" rel="noreferrer">
+                    <i class="fa-brands fa-twitter"></i>
+                    <span>@ccbc42394</span>
+                </a>
+                <a href="https://www.instagram.com" target="_blank" rel="noreferrer">
+                    <i class="fa-brands fa-instagram"></i>
+                    <span>@nogoodsharks</span>
+                </a>
+            </div>
+        </section>
+        <a href="/" id="back">Back</a>
     </main>
 </Layout>
 
 
 <style>
+
     main {
+        display: grid;
+        gap: 1em;
+        text-align: center;
+        padding: 1em 0;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+
+    #info {
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
         padding: 1em;
         display: grid;
-		place-items: center;
-		place-content: center;
+        gap: .25em;
+    }
+
+    #contact-links {
+        display: grid;
+        place-content: center;
+        gap: .25em;
+    }
+
+    #contact-links a {
+        /* border: 1px solid red; */
+        display: flex;
+        align-items: center;
+        gap: 1em;
+        text-align: center;
+        padding: 1em 2em;
+    }
+
+    #contact-links a:hover {
+        background-color: black;
+        color: white;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    #back {
+        width: fit-content;
+        margin: 0 auto;
+    }
+
+    #back:hover {
+        text-decoration: underline;
     }
 </style>

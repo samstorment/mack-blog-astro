@@ -6,7 +6,7 @@ import type { Heading } from '../../../types/blog';
 
 
 export async function getStaticPaths() {
-    const posts = await Astro.glob('../../../posts/*.md');
+    const posts = await Astro.glob('../../../_posts/*.md');
     return posts.map(post => {
         return {
             params: {
@@ -27,16 +27,16 @@ const headings: Heading[] = getHeadings();
 <Layout title={frontmatter.title} type="blog" description={frontmatter.preview}>
     <main id="main">
 
-        <article>
+        <div id="blog-content">
             <section id="info">
                 <h1 id="article-title">{frontmatter.title}</h1>
-                <p>{new Date(frontmatter.date).toLocaleDateString()}</p>
-                <p>{frontmatter.author}</p>
-                <a href="/blog">Get out of here</a>
+                <p>Written by <strong>{frontmatter.author}</strong> on {new Date(frontmatter.date).toLocaleDateString()}</p>
             </section>
-        
-            <Content />
-        </article>
+            
+            <article>
+                <Content />
+            </article>
+        </div>
 
         <Aside headings={headings} frontmatter={frontmatter} client:load />
     </main>
@@ -53,13 +53,25 @@ const headings: Heading[] = getHeadings();
     }
      
 
-    article {
+    #blog-content {
         height: 100%;
         padding: 1em;
         display: grid;
         gap: .75rem;
     }
 
+    section {
+        border-bottom: 1px solid black;
+        padding-bottom: 1em;
+        display: grid;
+        gap: 1em;
+    }
+
+    article {
+        height: 100%;
+        display: grid;
+        gap: 1rem;
+    }
 
     pre {
         overflow: scroll;

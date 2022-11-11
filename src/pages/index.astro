@@ -1,19 +1,22 @@
 ---
+import HomeNavItem from '../components/HomeNavItem.astro';
+import blog from '../images/blog.png';
+import cool from '../images/cool.png';
 import Layout from '../layouts/Layout.astro';
+
+const navItems = [
+	{ href: "/blog", text: "Blog", src: blog },
+	{ href: "/contact", text: "Contact", src: cool },
+]
 ---
 
 <Layout title="Home">
 	<main>
 		<h1>MacK Korris</h1>
 		<p>A guy who copies and edits</p>
-		<nav>
+		<nav id="home-nav">
 			<ul>
-				<li>
-					<a href="/blog">Blog</a>
-				</li>
-				<li>
-					<a href="/contact">Contact</a>
-				</li>
+				{navItems.map(ni => <HomeNavItem {...ni} />)}
 			</ul>
 		</nav>
 	</main>
@@ -22,13 +25,30 @@ import Layout from '../layouts/Layout.astro';
 <style>
 	main {
 		padding: 1em;
-		display: grid;
-		place-items: center;
-		place-content: center;
+		margin: 0 auto;
+		max-width: 400px;
+		text-align: center;
+	}
+
+	nav {
+		padding: 1em;
+		display: flex;
+		justify-content: center;
 	}
 
 	ul {
+		position: relative;
 		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
 		gap: 1em;
 	}
+
+
+	@media screen and (max-width: 400px) {
+		ul {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
 </style>
+

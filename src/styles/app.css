@@ -36,6 +36,7 @@ body {
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     position: relative;
+    font-family: monospace;
     height: 100vh;
 }
 
@@ -89,8 +90,12 @@ ol {
 
 h1 {
     font-size: 2.25rem;
+    line-height: 1.1em;
 }
 
+a {
+  color: inherit;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   * {

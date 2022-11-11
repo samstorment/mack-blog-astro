@@ -1,0 +1,61 @@
+---
+    export interface Props {
+        src: string;
+        text: string;
+        href: string;
+    }
+
+    const { src, text, href} = Astro.props;
+---
+
+
+<li>
+    <a href={href}>
+        <img src={src} alt={text}>
+        <span>{text}</span>
+    </a>
+</li>
+
+
+
+<style>
+    li {
+		text-align: center;
+		align-items: center;
+		justify-content: center;
+		min-width: 90px;
+        min-height: 90px;
+        flex: 1;
+		display: flex;
+		background-color: white;
+        position: relative;
+        outline: 1px solid black;
+        transition: transform cubic-bezier(0.075, 0.82, 0.165, 1) 200ms;
+	}
+    
+    li:hover, li:focus-within {
+        box-shadow: 0 0 1em 0 gray;
+    }
+
+	a {
+		/* border: 1px solid lime; */
+		display: grid;
+		align-items: center;
+		justify-content: center;
+		flex: 1;
+		height: 100%;
+		padding: .5em 1em;
+        outline: none;
+	}
+
+
+    li:active {
+        transform: scale(.9);
+    }
+
+    @media (pointer: coarse) {
+        .scale {
+            display: none;
+        }
+    }
+</style>

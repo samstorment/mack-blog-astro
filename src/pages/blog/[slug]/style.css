@@ -14,15 +14,24 @@ article td, th {
 }
 
 article ul {
-    padding: 0 1em;
+    margin-left: 1em;
+}
+
+
+article ul {
+    list-style-position: inside;
     list-style: disc !important;
 }
 
 article ol {
-    padding: 0 1em;
+    /* list-style-position: inside; */
+    padding-left: 1em;
     list-style: decimal !important;
 }
 
+article > ol {
+    padding-left: 2em;
+}
 article p code {
     background-color: rgb(211, 211, 211);
     color: black;
