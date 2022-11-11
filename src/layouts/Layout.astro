@@ -19,31 +19,42 @@ const {
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>  
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-
-		<meta property="og:locale" content="en_US">
-		<meta property="og:type" content={type}>
-		<meta property="og:title" content={title}>
-		<meta property="og:description" content={description}>
-		<meta property="og:url" content="https://mackkorris.vercel.app">
-		<meta property="og:site_name" content="MacK Korris Personal Site">
-		<meta property="og:image:secure_url" content="https://mackkorris.vercel.app/robo.jpg">
-		<meta property="og:image:width" content="400">
-		<meta property="og:image:height" content="300">
-
-		<meta name="twitter:card" content="summary">
-		<meta name="twitter:description" content={description}>
-		<meta name="twitter:title" content={title}>
-		<meta name="twitter:image" content="https://mackkorris.vercel.app/robo.jpg">
+		
+		<meta property="og:locale" content="en_US"/>
+		<meta property="og:type" content={type}/>
+		<meta property="og:title" content={title}/>
+		<meta property="og:description" content={description}/>
+		<meta property="og:url" content="https://mackkorris.vercel.app"/>
+		<meta property="og:site_name" content="MacK Korris Personal Site"/>
+		<meta property="og:image:secure_url" content="https://mackkorris.vercel.app/robo.jpg"/>
+		<meta property="og:image:width" content="400"/>
+		<meta property="og:image:height" content="300"/>
+		
+		<meta name="twitter:card" content="summary"/>
+		<meta name="twitter:description" content={description}/>
+		<meta name="twitter:title" content={title}/>
+		<meta name="twitter:image" content="https://mackkorris.vercel.app/robo.jpg"/>
 		<!-- <meta name="twitter:site" content="@ccbc42394">
-		<meta name="twitter:creator" content="@ccbc42394"> -->
+			<meta name="twitter:creator" content="@ccbc42394"> -->
+			
+		<script src="https://kit.fontawesome.com/1db4c273d0.js" crossorigin="anonymous"></script>
 
 		<title>{title}</title>
 	</head>
 	<body>
 		<Header />
-		<slot />
+		<div id="page-container">
+			<slot />
+		</div>
 	</body>
 </html>
+
+<style>
+	#page-container {
+		margin-top: var(--nav-height);
+		position: relative;
+	}
+</style>

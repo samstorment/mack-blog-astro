@@ -1,6 +1,8 @@
 ---
 import './style.css';
 import Layout from "../../../layouts/Layout.astro";
+import Aside from '../../../components/Aside.svelte';
+import type { Heading } from '../../../types/blog';
 
 
 export async function getStaticPaths() {
@@ -17,42 +19,60 @@ export async function getStaticPaths() {
     });
 }
 
-const { Content, frontmatter, getHeadings, getHeaders } = Astro.props.post;
+const { Content, frontmatter, getHeadings } = Astro.props.post;
+
+const headings: Heading[] = getHeadings();
 ---
 
 <Layout title={frontmatter.title} type="blog" description={frontmatter.preview}>
-    <main>
-        <section id="info">
-            <h1>{frontmatter.title}</h1>
-            <p>{new Date(frontmatter.date).toLocaleDateString()}</p>
-            <p>{frontmatter.author}</p>
-            <a href="/blog">Get out of here</a>
-        </section>
-        
+    <main id="main">
+
         <article>
+            <section id="info">
+                <h1>{frontmatter.title}</h1>
+                <p>{new Date(frontmatter.date).toLocaleDateString()}</p>
+                <p>{frontmatter.author}</p>
+                <a href="/blog">Get out of here</a>
+            </section>
+        
             <Content />
         </article>
+
+        <Aside headings={headings} client:load />
     </main>
 </Layout>
 
 
 <style>
     main {
-        padding: 1em;
-        display: grid;
+        display: flex;
         gap: 1em;
-        margin: 0 auto;
-        max-width: 1000px;
+        margin: 0 auto;        
         overflow: hidden;
+        max-width: 1200px;
+        margin: 0 auto;
     }
      
 
     article {
+        padding: 1em;
         display: grid;
         gap: .75rem;
     }
 
+
+    pre {
+        overflow: scroll;
+    }
+
     img {
         max-height: 100px;
+    }
+
+    @media (max-width: 1000px) {
+        main {
+            grid-template-columns: 1fr;
+            padding-bottom: 1em;
+        }
     }
 </style>
