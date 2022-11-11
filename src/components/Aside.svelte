@@ -1,11 +1,12 @@
 <script lang="ts">
-    import { fly, slide } from "svelte/transition";
+    import { fly, scale, slide } from "svelte/transition";
 
 
     import type { Heading } from "../types/blog";
     import AsideLink from "./AsideLink.svelte";
 
     export let headings: Heading[];
+    export let frontmatter: any;
 
 
     let open = true;
@@ -22,51 +23,81 @@
 <aside 
     class:closed={!open}
 >
-    <button type="button" id="sidebar-toggle" on:click={() => open = !open}>
-        <i class={arrow}></i>
-    </button>
-    {#if open}
     <nav>
-        {#each headings as h, i }
-            <AsideLink 
-                heading={h} 
-                index={i} 
-                minDepth={minDepth}
-                maxDepth={maxDepth}
-            />
-        {/each}
+        <button type="button" id="sidebar-toggle" on:click={() => open = !open}>
+            <i class={arrow}></i>
+        </button>
+        {#if open}
+            <ul transition:scale>
+                <li id="back-to-top">
+                    <AsideLink 
+                        heading={{
+                            depth: 0,
+                            slug: "article-title",
+                            text: frontmatter.title
+                        }}
+                        index={0}
+                        minDepth={minDepth}
+                        maxDepth={maxDepth}
+                    />
+                </li>
+                {#each headings as h, i }
+                    <li>
+                        <AsideLink 
+                            heading={h} 
+                            index={i} 
+                            minDepth={minDepth}
+                            maxDepth={maxDepth}
+                        />
+                    </li>
+                {/each}
+            </ul>
+        {/if}
     </nav>
-    {/if}
 </aside>
 
 <style>
     aside {
-        position: relative;
+        flex-shrink: 0;
+        width: 250px;
+        transition: width cubic-bezier(0.175, 0.885, 0.32, 1.275) 250ms;
         border-left: 1px solid black;
-        min-width: 250px;
-        transition: min-width cubic-bezier(0.175, 0.885, 0.32, 1.275) 250ms
+        position: relative;
     }
     
-    aside nav {
-        --nav-padding: 1em;
-        height: calc(100vh - var(--nav-height));
-        overflow: auto;
-        padding: var(--nav-padding);
+    nav {
+        position: sticky;
+        top: 0;
+    }
+
+    ul {
+        height: calc(100vh);
+        overflow-x: hidden;
+        overflow-y: auto;
         display: flex;
         flex-direction: column;
-        position: fixed;
-        top: calc(50px);
-        gap: .55em;
+        gap: .5em;
+        padding: .5em 1em;
+
     }
 
     .closed {
-        min-width: 0;
+        width: 0;
         padding-right: 1.5em;
+    }
+
+    .closed nav {
+        width: 0;
+    }
+
+    #back-to-top {
+        font-weight: bold;
     }
 
     button {
         transform: translate(-50%);
         position: absolute;
+        top: 0;
         width: 2em;
         height: 2em;
         border-radius: 2em;
@@ -75,14 +106,16 @@
         cursor: pointer;
         z-index: 1;
         top: 1em;
+        transition: transform cubic-bezier(0.77, 0, 0.175, 1) 100ms;
+    }
+
+    button:active {
+        transform: scale(.95) translate(-50%);
     }
 
     @media (max-width: 1000px) {
-        aside nav {
-            position: static;
-            padding: 0 1em;
-            top: auto;
-
+        aside {
+            display: none;
         }
     }
 </style>

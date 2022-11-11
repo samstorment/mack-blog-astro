@@ -24,6 +24,7 @@
 
 {#if visible}
 <a
+    title={heading.text}
     in:fly={{x: 1500, duration: 250, delay }}
     href={`#${heading.slug}`}
 >

@@ -29,7 +29,7 @@ const headings: Heading[] = getHeadings();
 
         <article>
             <section id="info">
-                <h1>{frontmatter.title}</h1>
+                <h1 id="article-title">{frontmatter.title}</h1>
                 <p>{new Date(frontmatter.date).toLocaleDateString()}</p>
                 <p>{frontmatter.author}</p>
                 <a href="/blog">Get out of here</a>
@@ -38,7 +38,7 @@ const headings: Heading[] = getHeadings();
             <Content />
         </article>
 
-        <Aside headings={headings} client:load />
+        <Aside headings={headings} frontmatter={frontmatter} client:load />
     </main>
 </Layout>
 
@@ -48,13 +48,13 @@ const headings: Heading[] = getHeadings();
         display: flex;
         gap: 1em;
         margin: 0 auto;        
-        overflow: hidden;
         max-width: 1200px;
-        margin: 0 auto;
+        height: 100%;
     }
      
 
     article {
+        height: 100%;
         padding: 1em;
         display: grid;
         gap: .75rem;
@@ -67,12 +67,5 @@ const headings: Heading[] = getHeadings();
 
     img {
         max-height: 100px;
-    }
-
-    @media (max-width: 1000px) {
-        main {
-            grid-template-columns: 1fr;
-            padding-bottom: 1em;
-        }
     }
 </style>
