@@ -6,4 +6,4 @@ date: 2023-11-11
 author: MacK Korris
 ---
 
-<paragraph>Emeka Okafor and Adam Morrison</paragraph>
+<paragraph>Emeka Okafor and Adam Morrison are inversely proportional</paragraph>
