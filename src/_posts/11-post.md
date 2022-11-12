@@ -36,7 +36,7 @@ Everything in this file up to this point looks like the following:
 
 ### Frontmatter
 
-The section the surrounded by the 3 `---` (called guards) is called frontmatter. This is metdata about your file that can be read and displayed on your site.
+The section surrounded by the 3 `---` (called guards) is called frontmatter. This is metdata about your file that can be read and displayed on your site.
 
 `title`, `date`, and `author` are read from this markdown file and displayed at the top of the blog
 
