@@ -5,25 +5,24 @@ import Layout from "../../layouts/Layout.astro"
 
 <Layout title="Contact MacK Korris" description="Get in touch with MacK">
     <main>
-        <h1>Contact Info</h1>
+        <h1>MacK Korris</h1>
         <section id="info">
-            <h2>MacK Korris</h2>
             <div id="contact-links">
-                <a href="mailto:mack@mail.com" target="_blank" rel="noreferrer">
-                    <i class="fa-solid fa-envelope"></i>
-                    <span>mack@mail.com</span>
-                </a>
-                <a href="https://www.twitter.com" target="_blank" rel="noreferrer">
+                <a href="https://twitter.com/mack423" target="_blank" rel="noreferrer">
                     <i class="fa-brands fa-twitter"></i>
-                    <span>@ccbc42394</span>
+                    <span>@mack423</span>
                 </a>
-                <a href="https://www.instagram.com" target="_blank" rel="noreferrer">
+                <a href="https://www.instagram.com/nogoodsharks/" target="_blank" rel="noreferrer">
                     <i class="fa-brands fa-instagram"></i>
                     <span>@nogoodsharks</span>
                 </a>
+                <a href="https://www.linkedin.com/in/mackenzie-korris-3a1665205/" target="_blank" rel="noreferrer">
+                    <i class="fa-brands fa-linkedin"></i>
+                    <span>MacK Korris</span>
+                </a>
             </div>
         </section>
-        <a href="/" id="back">Back</a>
+        <!-- <a href="/" id="back">Back</a> -->
     </main>
 </Layout>
 
@@ -35,15 +34,12 @@ import Layout from "../../layouts/Layout.astro"
         gap: 1em;
         text-align: center;
         padding: 1em 0;
-        max-width: 500px;
+        /* max-width: 500px; */
         margin: 0 auto;
     }
 
 
     #info {
-        border-top: 1px solid black;
-        border-bottom: 1px solid black;
-        padding: 1em;
         display: grid;
         gap: .25em;
     }
@@ -60,7 +56,8 @@ import Layout from "../../layouts/Layout.astro"
         align-items: center;
         gap: 1em;
         text-align: center;
-        padding: 1em 2em;
+        padding: 1em;
+        width: 100%;
     }
 
     #contact-links a:hover {
@@ -79,5 +76,9 @@ import Layout from "../../layouts/Layout.astro"
 
     #back:hover {
         text-decoration: underline;
+    }
+
+    i {
+        font-size: 1.6rem;
     }
 </style>

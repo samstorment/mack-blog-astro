@@ -1,0 +1,36 @@
+---
+import Photo from '../../components/Photo.svelte';
+import Layout from '../../layouts/Layout.astro';
+import photos from '../../_photos/photos.json';
+---
+
+
+<Layout title="Photos" description="Photographs by MacK Korris" imageUrl={photos[0].url}>
+    <main id="photos-page">
+        <h1>Photos</h1>
+        <section id="gallery">
+            {photos.map((p, i) => <Photo photo={p} client:load />)}
+        </section>
+    </main>
+</Layout>
+
+
+<style>
+    #photos-page {
+        display: grid;
+        gap: 1em;
+        padding: 1em;
+        max-width: 1000px;
+        margin: 0 auto;
+        align-items: flex-start;
+    }
+
+    #gallery {
+        display: grid;
+        /* grid-template-columns: 1fr 1fr 1fr; */
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        /* display: flex;
+        flex-wrap: wrap; */
+        gap: 1em;
+    }
+</style>

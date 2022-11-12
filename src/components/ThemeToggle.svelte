@@ -31,7 +31,8 @@
 
 
 <button 
-    id="theme-toggle" on:click={click}       
+    id="theme-toggle" on:click={click}   
+    class="nav-button"    
     class:dark
     class:light={!dark}
 >

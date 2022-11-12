@@ -3,6 +3,7 @@ import './style.css';
 import Layout from "../../../layouts/Layout.astro";
 import Aside from '../../../components/Aside.svelte';
 import type { Heading } from '../../../types/blog';
+import { getFullFormattedDate } from '../../../util/date';
 
 
 export async function getStaticPaths() {
@@ -30,7 +31,10 @@ const headings: Heading[] = getHeadings();
         <div id="blog-content">
             <section id="info">
                 <h1 id="article-title">{frontmatter.title}</h1>
-                <p>Written by <strong>{frontmatter.author}</strong> on {new Date(frontmatter.date).toLocaleDateString()}</p>
+                <div>
+                    <p>Written by <strong>{frontmatter.author}</strong></p>
+                    <p>{getFullFormattedDate(frontmatter.date)}</p>
+                </div>
             </section>
             
             <article>
@@ -58,10 +62,11 @@ const headings: Heading[] = getHeadings();
         padding: 1em;
         display: grid;
         gap: .75rem;
+        flex: 1;
     }
 
     section {
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid var(--clr-border);
         padding-bottom: 1em;
         display: grid;
         gap: 1em;

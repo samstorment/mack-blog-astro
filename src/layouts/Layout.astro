@@ -6,12 +6,14 @@ export interface Props {
 	title: string;
 	description?: string;
 	type?: string;
+	imageUrl?: string;
 }
 
 const { 
 	title,
 	description = "MacK Korris. A guy who copies and edits.",
-	type = "website"
+	type = "website",
+	imageUrl = "https://mackkorris.vercel.app/robo.jpg"
 } = Astro.props;
 ---
 
@@ -29,16 +31,16 @@ const {
 		<meta property="og:description" content={description}/>
 		<meta property="og:url" content="https://mackkorris.vercel.app"/>
 		<meta property="og:site_name" content="MacK Korris Personal Site"/>
-		<meta property="og:image:secure_url" content="https://mackkorris.vercel.app/robo.jpg"/>
+		<meta property="og:image:secure_url" content={imageUrl} />
 		<meta property="og:image:width" content="400"/>
 		<meta property="og:image:height" content="300"/>
 		
 		<meta name="twitter:card" content="summary"/>
 		<meta name="twitter:description" content={description}/>
 		<meta name="twitter:title" content={title}/>
-		<meta name="twitter:image" content="https://mackkorris.vercel.app/robo.jpg"/>
-		<!-- <meta name="twitter:site" content="@ccbc42394">
-			<meta name="twitter:creator" content="@ccbc42394"> -->
+		<meta name="twitter:image" content={imageUrl} />
+		<meta name="twitter:site" content="@mack423">
+		<meta name="twitter:creator" content="@mack423">
 
 		<script src="https://kit.fontawesome.com/1db4c273d0.js" crossorigin="anonymous"></script>
 

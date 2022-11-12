@@ -1,10 +1,13 @@
+/* @import url(https://fonts.googleapis.com/css?family=Unna&display=swap); */
+@import url('https://fonts.googleapis.com/css?family=Castoro&display=swap');
 
 :root {
-  --nav-height: 60px;
   color-scheme: light dark;
+  --nav-height: 60px;
   --clr-bg: white;
   --clr-font: black;
   --clr-border: black;
+  --clr-font-light: rgb(82, 82, 82);
 }
 
 :root.dark {
@@ -46,7 +49,8 @@ body {
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     position: relative;
-    font-family: monospace;
+    /* font-family: monospace; */
+    font-family: 'Castoro';
     height: 100vh;
     background-color: var(--clr-bg);
     color: var(--clr-font);

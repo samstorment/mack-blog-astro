@@ -73,14 +73,15 @@
         position: sticky;
         top: 0;
     }
-
+    
     ul {
+        font-size: 1.1rem;
         height: calc(100vh);
         overflow-x: hidden;
         overflow-y: auto;
         display: flex;
         flex-direction: column;
-        gap: .5em;
+        gap: .2em;
         padding: .5em 1em;
 
     }
@@ -99,6 +100,7 @@
 
     #back-to-top {
         font-weight: bold;
+        font-size: 1.2rem;
     }
 
     button {
@@ -124,7 +126,7 @@
         transform: scale(.95) translate(-50%);
     }
 
-    @media (max-width: 1000px) {
+    @media (max-width: 800px) {
         aside {
             display: none;
         }

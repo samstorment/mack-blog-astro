@@ -18,7 +18,7 @@
     font-size: 1.25rem;
 }
 
-#header #home-link {
+#home-link {
     display: flex;
     align-items: center;
     gap: .5em;
@@ -30,6 +30,9 @@
 #header button {
     background-color: var(--clr-bg);
     color: var(--clr-font);
+}
+
+#header .nav-button {
     transition: transform cubic-bezier(0.165, 0.84, 0.44, 1) 200ms;
 }
 
@@ -39,7 +42,6 @@
     color: black;
 }
 
-#header a:active, 
-#header button:active {
+#header .nav-button:active {
     transform: scale(.9);
 }

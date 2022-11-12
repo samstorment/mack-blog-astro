@@ -29,9 +29,6 @@ article ol {
     list-style: decimal !important;
 }
 
-article > ol {
-    padding-left: 2em;
-}
 
 article p code {
     background-color: rgb(211, 211, 211);

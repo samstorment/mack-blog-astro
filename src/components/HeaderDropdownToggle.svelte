@@ -10,7 +10,9 @@
 
 
 <button 
-    id="theme-toggle" on:click={() => $dropdownOpen = !$dropdownOpen}             
+    id="theme-toggle" 
+    class="nav-button"
+    on:click={() => $dropdownOpen = !$dropdownOpen}             
 >
     {#key $dropdownOpen}
         <i class={`fa-solid fa-caret-${direction}`}

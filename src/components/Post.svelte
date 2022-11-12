@@ -5,7 +5,10 @@
 <script lang="ts">
     import { onMount } from "svelte";
 
+
     import { fly, slide, scale, fade } from "svelte/transition";
+    import { getPostFormattedDate } from "../util/date";
+    import { rand } from "../util/util";
 
     export let author: string;
     export let title: string;
@@ -15,8 +18,6 @@
     export let preview: string;
 
     let visible = false;
-
-    const rand = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1) + min);
 
     let trans = { x: rand(-1000, 1000), y: rand(-1000, 1000), duration: rand(200, 800), delay: 0 };
 
@@ -40,9 +41,11 @@
         style={thumbnail && `background-image: url(${thumbnail})`}
         transition:fly|local={trans}
     >
-        <h3>{title}</h3>
-        <p>{new Date(date).toLocaleDateString()}</p>
-        <p>{author}</p>
+        <div class="post-title-container">
+            <h3>{title}</h3>
+            <p class="date">{getPostFormattedDate(date)}</p>
+        </div>
+        <!-- <p>{author}</p> -->
         <p class="preview">{preview}</p>
     </a>
 {/if}
@@ -51,7 +54,7 @@
 <style>
     .post {
         flex: 1;
-        padding: 1em;
+        padding: .75em;
         outline: 1px solid var(--clr-border);
         color: var(--clr-font);
         text-decoration: none;
@@ -66,6 +69,8 @@
         text-shadow: 0 0 1em 0 gray;
         background-position: center;
         min-width: 250px;
+        position: relative;
+        gap: .25em;
     }
 
     .post h3 {
@@ -73,6 +78,8 @@
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;  
         overflow: hidden;
+        /* font-size: 1rem; */
+        line-height: 1.2;
     }
 
     .post p {
@@ -94,14 +101,33 @@
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;  
         overflow: hidden;
-        color: rgb(117, 117, 117);
-        /* margin-top: auto; */
+        color: var(--clr-font-light);
+        font-size: .9rem;
+        margin-top: auto;
     }
 
     .has-thumbnail p,
     .has-thumbnail h3 {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         color: var(--clr-bg);
-        text-shadow: 1px 1px 3px var(--clr-font);
+        text-shadow: 1px 1px 5px var(--clr-font);
+    }
+
+    .date {
+        /* background-color: rgb(224, 224, 224); */
+        /* background-color: var(--clr-bg);
+        border: 1px solid var(--clr-border); */
+        /* padding: .1em .5em; */
+        /* width: fit-content; */
+        font-size: .85rem;
+        color: var(--clr-font-light);
+        /* color: black; */
+        /* text-shadow: none; */
+        margin-left: auto;
+    }
+
+    .post-title-container {
+        display: flex;
+        gap: .5em;
+        align-items: flex-start;
     }
 </style>

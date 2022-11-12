@@ -43,7 +43,7 @@
         display: flex;
         text-decoration: none;
         color: var(--clr-font);
-        padding: .5em;
+        padding: .2em .5em;
         position: relative;
     }
 
