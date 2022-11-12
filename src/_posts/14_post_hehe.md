@@ -6,4 +6,4 @@ date: 2023-11-11
 author: MacK Korris
 ---
 
-Emeka Okafor and Adam Morrison
+<paragraph>Emeka Okafor and Adam Morrison</paragraph>
