@@ -1,24 +1,44 @@
-<header>
-    <nav>
-        <a href="/">Take Me Home</a>
+---
+import ThemeToggle from "./ThemeToggle.svelte"
+import './header.css';
+import HeaderDropdownToggle from "./HeaderDropdownToggle.svelte";
+import HeaderDropdown from "./HeaderDropdown.svelte";
+---
+
+<header id="header">
+    <nav id="top-nav">
+        <a href="/" id="home-link">
+            <img src="/favicon.png">
+            <span>Take Me Home</span>
+        </a>
+
+
+        <ThemeToggle client:load />
+
+        <HeaderDropdownToggle client:load />
+
+        <HeaderDropdown client:load />
     </nav>
 </header>
 
 <style>
     header {
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid var(--clr-border);
         top: 0;
         width: 100%;
-        background-color: white;
+        background-color: var(--clr-bg);
         z-index: 10;
+        height: var(--nav-height);
     }
     
     nav {
-        padding: 1em;
         height: 100%;
         margin: 0 auto;
         max-width: 1200px;
         display: flex;
         align-items: center;
+        justify-content: flex-end;
+        gap: .5em;
+        position: relative;
     }
 </style>

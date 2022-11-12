@@ -60,8 +60,12 @@
     aside {
         flex-shrink: 0;
         width: 250px;
-        transition: width cubic-bezier(0.175, 0.885, 0.32, 1.275) 250ms;
-        border-left: 1px solid black;
+
+        transition-property: width;
+        transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        transition-duration: 250ms;
+
+        border-left: 1px solid var(--clr-border);
         position: relative;
     }
     
@@ -83,11 +87,14 @@
 
     .closed {
         width: 0;
-        padding-right: 1.5em;
+        min-height: 100vh;
+        /* Lines up with heading button width and margin */
+        padding-right: 2.5em;
     }
 
     .closed nav {
         width: 0;
+        height: 0;
     }
 
     #back-to-top {
@@ -101,8 +108,9 @@
         width: 2em;
         height: 2em;
         border-radius: 2em;
-        border: 1px solid black;
-        background-color: white;
+        border: 1px solid var(--clr-border);
+        background-color: var(--clr-bg);
+        color: var(--clr-font);
         display: flex;
         align-items: center;
         justify-content: center;

@@ -1,6 +1,16 @@
 
 :root {
-  --nav-height: 50px;
+  --nav-height: 60px;
+  color-scheme: light dark;
+  --clr-bg: white;
+  --clr-font: black;
+  --clr-border: black;
+}
+
+:root.dark {
+  --clr-bg: black;
+  --clr-font: white;
+  --clr-border: white;
 }
 
 /*
@@ -38,6 +48,9 @@ body {
     position: relative;
     font-family: monospace;
     height: 100vh;
+    background-color: var(--clr-bg);
+    color: var(--clr-font);
+
 }
 
 /*

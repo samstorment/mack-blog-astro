@@ -1,0 +1,45 @@
+#header  button {
+    width: 3em;
+    height: 3em;
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#header a {
+    padding: 1em;
+}
+
+#header i {
+    font-size: 1.25rem;
+}
+
+#header #home-link {
+    display: flex;
+    align-items: center;
+    gap: .5em;
+    text-decoration: none;
+    margin-right: auto;
+}
+
+#header a, 
+#header button {
+    background-color: var(--clr-bg);
+    color: var(--clr-font);
+    transition: transform cubic-bezier(0.165, 0.84, 0.44, 1) 200ms;
+}
+
+#header a:hover, 
+#header button:hover {
+    background-color: rgb(240, 240, 240);
+    color: black;
+}
+
+#header a:active, 
+#header button:active {
+    transform: scale(.9);
+}

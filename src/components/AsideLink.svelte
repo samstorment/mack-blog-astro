@@ -42,7 +42,7 @@
         /* outline: 1px solid limegreen; */
         display: flex;
         text-decoration: none;
-        color: black;
+        color: var(--clr-font);
         padding: .5em;
         position: relative;
     }
@@ -72,14 +72,13 @@
         width: 0;
         bottom: 0;
         left: 0;
-        background-color: black;
+        background-color: var(--clr-font);
         transition: width ease-in-out 200ms;
         border-radius: 1em;
     }
 
     a::before {
         top: 0;
-        color: red;
     }
 
     a:focus-within {

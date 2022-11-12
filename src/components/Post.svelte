@@ -52,8 +52,8 @@
     .post {
         flex: 1;
         padding: 1em;
-        outline: 1px solid black;
-        color: black;
+        outline: 1px solid var(--clr-border);
+        color: var(--clr-font);
         text-decoration: none;
         transition-property: scale;
         transition-duration: 200ms;
@@ -61,7 +61,7 @@
         transform-origin: center;
         display: flex;
         flex-direction: column;
-        background-color: white;
+        background-color: var(--clr-bg);
         background-size: cover;
         text-shadow: 0 0 1em 0 gray;
         background-position: center;
@@ -101,7 +101,7 @@
     .has-thumbnail p,
     .has-thumbnail h3 {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        color: white;
-        text-shadow: 1px 1px 3px black;
+        color: var(--clr-bg);
+        text-shadow: 1px 1px 3px var(--clr-font);
     }
 </style>
