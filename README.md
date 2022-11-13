@@ -18,3 +18,13 @@ All commands are run from the root of the project, from a terminal:
 | `pnpm run preview`      | Preview your build locally, before deploying       |
 | `pnpm run astro ...`    | Run CLI commands like `astro add`, `astro preview` |
 | `pnpm run astro --help` | Get help using the Astro CLI                       |
+
+
+## .env
+
+Add a .env file that has the following. Will need to add these on vercel or whatever platform you choose
+
+```
+SANITY_PROJECT_ID=<your-id>
+SANITY_DATASET=<your-dataset>
+```
