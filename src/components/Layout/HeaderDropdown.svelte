@@ -1,6 +1,6 @@
 <script lang="ts">
     import { fly, slide } from "svelte/transition";
-    import { dropdownOpen } from "../stores/layout";
+    import { dropdownOpen } from "../../stores/layout";
 </script>
 
 

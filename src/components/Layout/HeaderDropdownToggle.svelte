@@ -1,7 +1,7 @@
 
 <script lang="ts">
     import { fade, fly, scale, slide } from "svelte/transition";
-    import { dropdownOpen } from "../stores/layout";
+    import { dropdownOpen } from "../../stores/layout";
 
 
     $: direction = $dropdownOpen ? "up" : "down";

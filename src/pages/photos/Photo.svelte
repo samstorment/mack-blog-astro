@@ -5,7 +5,7 @@
 <script lang="ts">
     import { onMount, tick } from "svelte";
     import { fly, scale, slide } from "svelte/transition";
-    import { rand } from "../util/util";
+    import { rand } from "../../util/util";
 
 
     interface Photo {

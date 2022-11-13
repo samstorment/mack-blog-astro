@@ -7,15 +7,15 @@
 
 
     import { fly, slide, scale, fade } from "svelte/transition";
-    import { getPostFormattedDate } from "../util/date";
-    import { rand } from "../util/util";
+    import { getPostFormattedDate } from "../../util/date";
+    import { rand } from "../../util/util";
+    import type { Post } from "../../types/blog";
 
-    export let author: string;
-    export let title: string;
-    export let slug: string;
-    export let thumbnail: string | undefined;
-    export let date: string;
-    export let preview: string;
+    export let post: Post;
+
+    const { thumbnail, slug, title, createdAt, tags, excerpt } = post;
+
+    const date = new Date(createdAt);
 
     let visible = false;
 
@@ -37,16 +37,16 @@
 {#if visible}
     <a class="post"
         class:has-thumbnail={thumbnail} 
-        href={`/blog/${slug}`} 
+        href={`/blog/${slug}`}
         style={thumbnail && `background-image: url(${thumbnail})`}
         transition:fly|local={trans}
     >
         <div class="post-title-container">
-            <h3>{title}</h3>
+            <h2>{title}</h2>
             <p class="date">{getPostFormattedDate(date)}</p>
         </div>
         <!-- <p>{author}</p> -->
-        <p class="preview">{preview}</p>
+        <p class="preview">{excerpt}</p>
     </a>
 {/if}
 
@@ -58,9 +58,9 @@
         outline: 1px solid var(--clr-border);
         color: var(--clr-font);
         text-decoration: none;
-        transition-property: scale;
+        transition-property: transform;
         transition-duration: 200ms;
-        transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+        transition-timing-function: ease;
         transform-origin: center;
         display: flex;
         flex-direction: column;
@@ -71,14 +71,14 @@
         min-width: 250px;
         position: relative;
         gap: .25em;
+        min-height: 250px;
     }
 
-    .post h3 {
+    .post h2 {
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;  
         overflow: hidden;
-        /* font-size: 1rem; */
         line-height: 1.2;
     }
 
@@ -87,8 +87,10 @@
         object-fit: contain;
     }
 
-    .post:hover {
+    .post:hover,
+    .post:focus-within {
         box-shadow: 0 0 1em 0 gray;
+        transform: scale(1.025);
     }
 
     .post:active {
@@ -107,21 +109,15 @@
     }
 
     .has-thumbnail p,
-    .has-thumbnail h3 {
-        color: var(--clr-bg);
-        text-shadow: 1px 1px 5px var(--clr-font);
+    .has-thumbnail h2 {
+        color: white;
+        text-shadow: 1px 1px 2px black,
+                    0px 0px 5px black,
+                    -1px -1px 2px black;
     }
 
     .date {
-        /* background-color: rgb(224, 224, 224); */
-        /* background-color: var(--clr-bg);
-        border: 1px solid var(--clr-border); */
-        /* padding: .1em .5em; */
-        /* width: fit-content; */
-        font-size: .85rem;
         color: var(--clr-font-light);
-        /* color: black; */
-        /* text-shadow: none; */
         margin-left: auto;
     }
 

@@ -1,48 +1,67 @@
 ---
-import './style.css';
+import '../style.css';
 import Layout from "../../../layouts/Layout.astro";
-import Aside from '../../../components/Aside.svelte';
-import type { Heading } from '../../../types/blog';
+import type { Post } from '../../../types/blog';
 import { getFullFormattedDate } from '../../../util/date';
-
+import { getAllPosts, getPostBySlug } from '../../../data-fetching/posts.fetch';
+import PortableText from '../../../components/PortableText.astro';
+import { getSanityHeadings } from '../../../util/sanity';
+import Aside from '../../../components/Aside.svelte';
 
 export async function getStaticPaths() {
-    const posts = await Astro.glob('../../../_posts/*.md');
-    return posts.map(post => {
+
+    const posts = await getAllPosts();
+
+    return posts.map(p => {
         return {
-            params: {
-                slug: post.frontmatter.slug
-            },
-            props: {
-                post
-            }
+            params: { slug: p.slug },
+            props: { post: p }
         }
     });
 }
 
-const { Content, frontmatter, getHeadings } = Astro.props.post;
+const post: Post = Astro.props.post;
 
-const headings: Heading[] = getHeadings();
+const p: Post = await getPostBySlug(post.slug);
+
+console.log(p.headings[0].children);
+console.log(p.headings);
+console.log(getSanityHeadings(p.headings));
+
 ---
 
-<Layout title={frontmatter.title} type="blog" description={frontmatter.preview}>
+<script>
+    import { generateHeadingSlug } from "../../../util/sanity"
+
+    // generates an id slug matching the table of contents slugs
+    document.querySelectorAll('article :is(h1, h2, h3, h4, h5, h6)').forEach((ele: Element) => {
+        const text = ele.firstChild?.nodeValue;
+
+        if (!text) return;
+
+        const slug = generateHeadingSlug(text);
+        ele.id = slug;
+    })
+</script>
+
+<Layout title={p.title} type="blog" description={p.excerpt} imageUrl={p.thumbnail}>
     <main id="main">
 
         <div id="blog-content">
             <section id="info">
-                <h1 id="article-title">{frontmatter.title}</h1>
+                <h1 id="article-title">{p.title}</h1>
                 <div>
-                    <p>Written by <strong>{frontmatter.author}</strong></p>
-                    <p>{getFullFormattedDate(frontmatter.date)}</p>
+                    <p>Written by <strong>{p.author.name}</strong></p>
+                    <p>{getFullFormattedDate(p.createdAt)}</p>
                 </div>
             </section>
             
             <article>
-                <Content />
+                <PortableText portableText={p.body} />
             </article>
         </div>
 
-        <Aside headings={headings} frontmatter={frontmatter} client:load />
+        <Aside headings={getSanityHeadings(p.headings)} title={p.title} client:load />
     </main>
 </Layout>
 

@@ -3,7 +3,9 @@ const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 
 const currentYear = () => new Date(Date.now()).getFullYear();
 
-function getDayMonthYear(dateString: string) {
+type DateString = string | Date;
+
+function getDayMonthYear(dateString: DateString) {
     const dateObj = new Date(dateString);
     const y = dateObj.getFullYear();
     const m = dateObj.getUTCMonth();
@@ -12,7 +14,7 @@ function getDayMonthYear(dateString: string) {
     return [ d, m, y ];
 }
 
-export function getPostFormattedDate(dateString: string) {
+export function getPostFormattedDate(dateString: DateString) {
 
     const [ d, m, y ] = getDayMonthYear(dateString);
 
@@ -25,7 +27,7 @@ export function getPostFormattedDate(dateString: string) {
     return formattedDate;
 }
 
-export function getFullFormattedDate(dateString: string) {
+export function getFullFormattedDate(dateString: DateString) {
     const [ d, m, y ] = getDayMonthYear(dateString);
 
     return`${months[m]} ${d}, ${y}`;

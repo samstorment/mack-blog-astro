@@ -23,8 +23,6 @@
         const selectedTheme: string = localStorage.getItem("theme") ?? "light";
         if (selectedTheme === "dark") dark = true;
         if (selectedTheme) setTheme(selectedTheme as "dark" | "light");
-    
-        console.log(selectedTheme);
     });
 
 </script>

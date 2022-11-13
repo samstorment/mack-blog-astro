@@ -1,23 +1,18 @@
 ---
-import Post from "../../components/Post.svelte";
-import Layout from "../../layouts/Layout.astro";
+import SanityPost from './SanityPost.svelte';
+import { getAllPosts } from '../../data-fetching/posts.fetch';
+import Layout from '../../layouts/Layout.astro';
 
-const allPosts = await Astro.glob('../../_posts/*.md');
-const posts = allPosts.sort((p1, p2) => {
-    const date1 = p1.frontmatter.date;
-    const date2 = p2.frontmatter.date;
-
-    if (date1 === date2) return 0;
-    return date1 > date2 ? -1 : 1; 
-});
+const posts = await getAllPosts();
 ---
 
 
 <Layout title="Blog" type="blog" description="The blog posts of MacK Korris">
     <main>
         <h1>Blog</h1>
+
         <section>
-            {posts.map(p => <Post {...p.frontmatter } client:load />)}
+            {posts.map(p => <SanityPost post={p} client:load />)}
         </section>
     </main>
 </Layout>
@@ -32,11 +27,7 @@ const posts = allPosts.sort((p1, p2) => {
         gap: 1em;
     }
 
-    
     section {
-        /* display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 1em; */
         display: flex;
         flex-wrap: wrap;
         gap: 1em;

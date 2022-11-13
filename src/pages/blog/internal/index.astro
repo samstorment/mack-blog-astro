@@ -1,0 +1,45 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Post from "./InternalPost.svelte";
+
+
+const allPosts = await Astro.glob('../../../_posts/*.md');
+const posts = allPosts.sort((p1, p2) => {
+    const date1 = p1.frontmatter.date;
+    const date2 = p2.frontmatter.date;
+
+    if (date1 === date2) return 0;
+    return date1 > date2 ? -1 : 1; 
+});
+---
+
+
+<Layout title="Blog" type="blog" description="The blog posts of MacK Korris">
+    <main>
+        <h1>Blog</h1>
+        <section>
+            {posts.map(p => <Post {...p.frontmatter } client:load />)}
+        </section>
+    </main>
+</Layout>
+
+
+<style>
+    main {
+        padding: 1em;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        gap: 1em;
+    }
+
+    
+    section {
+        /* display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1em; */
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1em;
+    }
+</style>

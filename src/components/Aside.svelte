@@ -6,7 +6,7 @@
     import AsideLink from "./AsideLink.svelte";
 
     export let headings: Heading[];
-    export let frontmatter: any;
+    export let title: string;
 
 
     let open = true;
@@ -34,7 +34,7 @@
                         heading={{
                             depth: 0,
                             slug: "article-title",
-                            text: frontmatter.title
+                            text: title
                         }}
                         index={0}
                         minDepth={minDepth}

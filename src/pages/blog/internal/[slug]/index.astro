@@ -1,0 +1,87 @@
+---
+import '../../style.css';
+import Layout from "../../../../layouts/Layout.astro";
+import Aside from '../../../../components/Aside.svelte';
+import type { Heading } from '../../../../types/blog';
+import { getFullFormattedDate } from '../../../../util/date';
+
+export async function getStaticPaths() {
+    const posts = await Astro.glob('../../../../_posts/*.md');
+    return posts.map(post => {
+        return {
+            params: {
+                slug: post.frontmatter.slug
+            },
+            props: {
+                post
+            }
+        }
+    });
+}
+
+const { Content, frontmatter, getHeadings } = Astro.props.post;
+
+const headings: Heading[] = getHeadings();
+---
+
+<Layout title={frontmatter.title} type="blog" description={frontmatter.preview}>
+    <main id="main">
+
+        <div id="blog-content">
+            <section id="info">
+                <h1 id="article-title">{frontmatter.title}</h1>
+                <div>
+                    <p>Written by <strong>{frontmatter.author}</strong></p>
+                    <p>{getFullFormattedDate(frontmatter.date)}</p>
+                </div>
+            </section>
+            
+            <article>
+                <Content />
+            </article>
+        </div>
+
+        <Aside headings={headings} title={frontmatter.title} client:load />
+    </main>
+</Layout>
+
+
+<style>
+    main {
+        display: flex;
+        gap: 1em;
+        margin: 0 auto;        
+        max-width: 1200px;
+        height: 100%;
+    }
+     
+
+    #blog-content {
+        height: 100%;
+        padding: 1em;
+        display: grid;
+        gap: .75rem;
+        flex: 1;
+    }
+
+    section {
+        border-bottom: 1px solid var(--clr-border);
+        padding-bottom: 1em;
+        display: grid;
+        gap: 1em;
+    }
+
+    article {
+        height: 100%;
+        display: grid;
+        gap: 1rem;
+    }
+
+    pre {
+        overflow: scroll;
+    }
+
+    img {
+        max-height: 100px;
+    }
+</style>
