@@ -20,5 +20,9 @@ export default defineConfig({
     useCdn: true
   })],
   output: "server",
-  adapter: vercel()
+  adapter: vercel({
+    includeFiles: [
+      'src/pages/**/*'
+    ]
+  })
 });
