@@ -3,7 +3,6 @@ import type { Post } from "../types/blog";
 import { urlForImage } from "../util/sanity";
 
 
-
 export async function getAllPosts(): Promise<Post[]> {
     const query2 = `*[_type == 'post' && isPublished] | order(_createdAt desc ) {
         title,
@@ -17,6 +16,8 @@ export async function getAllPosts(): Promise<Post[]> {
     }`;
     
     const allPosts = await useSanityClient().fetch(query2) as Post[];
+
+    console.log("ALL POSTS", allPosts);
     
     return allPosts.map(p => {
         return {
@@ -42,6 +43,8 @@ export async function getPostBySlug(slug: string): Promise<Post> {
     }`;
     
     const allPosts = await useSanityClient().fetch(query2) as Post[];
+
+    console.log("ALL POSTS for slug", slug, allPosts);
     
     const post = allPosts.map(p => {
         return {
