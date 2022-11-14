@@ -1,18 +1,8 @@
 ---
-import HomeNavItem from './HomeNavItem.astro';
-import blog from '../images/blog.png';
-import cool from '../images/cool.png';
-import photos from '../images/photos.png';
 import Layout from '../layouts/Layout.astro';
 import Window from '../components/os/Window.svelte';
 import GreetingWindow from './GreetingWindow.svelte';
-
-const navItems = [
-	{ href: "/blog", text: "Blog", src: blog },
-	// { href: "/contact", text: "Music", src: cool },
-	{ href: "/contact", text: "Contact", src: cool },
-	{ href: '/photos', text: 'Photos', src: photos }
-]
+import HomeNav from './HomeNav.astro';
 ---
 
 <!-- <GreetingWindow client:load /> -->
@@ -22,11 +12,7 @@ const navItems = [
 	<main>
 		<h1>MacK Korris</h1>
 		<p>A guy who copies and edits</p>
-		<nav id="home-nav">
-			<ul>
-				{navItems.map(ni => <HomeNavItem {...ni} />)}
-			</ul>
-		</nav>
+		<HomeNav />
 	</main>
 </Layout>
 
@@ -37,27 +23,6 @@ const navItems = [
 		margin: 0 auto;
 		/* max-width: 400px; */
 		text-align: center;
-	}
-
-	nav {
-		padding: 1em;
-		display: flex;
-		justify-content: center;
-	}
-
-	ul {
-		position: relative;
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-		gap: 1em;
-	}
-
-
-	@media screen and (max-width: 400px) {
-		ul {
-			grid-template-columns: 1fr 1fr;
-		}
 	}
 </style>
 

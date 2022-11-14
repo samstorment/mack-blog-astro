@@ -1,0 +1,42 @@
+---
+import blog from '../images/blog.png';
+import cool from '../images/cool.png';
+import photos from '../images/photos.png';
+import HomeNavItem from "./HomeNavItem.astro";
+
+const navItems = [
+	{ href: "/blog", text: "Blog", src: blog },
+	// { href: "/contact", text: "Music", src: cool },
+	{ href: "/contact", text: "Contact", src: cool },
+	{ href: '/photos', text: 'Photos', src: photos }
+]
+---
+
+<nav id="home-nav">
+    <ul>
+        {navItems.map(ni => <HomeNavItem {...ni} />)}
+    </ul>
+</nav>
+
+<style>
+    nav {
+		padding: 1em;
+		display: flex;
+		justify-content: center;
+	}
+
+	ul {
+		position: relative;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 1em;
+	}
+
+
+	@media screen and (max-width: 400px) {
+		ul {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+</style>
