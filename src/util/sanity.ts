@@ -10,7 +10,16 @@ export function urlForImage(source: any) {
 }
 
 const customComponents = {
-
+    types: {
+        image: ({ value: image }: any) => {
+            return `<img src="${urlForImage(image).url()}" />`;
+        }
+    },
+    marks: {
+        highlight: (props: any) => {
+            return `<span class="highlight">${props.children}</span>`
+        }
+    }
 }
 
 export function sanityPortableText(portabletext: any) {

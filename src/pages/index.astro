@@ -4,6 +4,8 @@ import blog from '../images/blog.png';
 import cool from '../images/cool.png';
 import photos from '../images/photos.png';
 import Layout from '../layouts/Layout.astro';
+import Window from '../components/os/Window.svelte';
+import GreetingWindow from './GreetingWindow.svelte';
 
 const navItems = [
 	{ href: "/blog", text: "Blog", src: blog },
@@ -13,7 +15,10 @@ const navItems = [
 ]
 ---
 
+<!-- <GreetingWindow client:load /> -->
+
 <Layout title="Home">
+	
 	<main>
 		<h1>MacK Korris</h1>
 		<p>A guy who copies and edits</p>
@@ -27,6 +32,7 @@ const navItems = [
 
 <style>
 	main {
+		position: relative;
 		padding: 1em;
 		margin: 0 auto;
 		/* max-width: 400px; */

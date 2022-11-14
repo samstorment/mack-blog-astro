@@ -54,6 +54,7 @@ body {
     height: 100vh;
     background-color: var(--clr-bg);
     color: var(--clr-font);
+    /* overflow: hidden; */
 
 }
 
@@ -112,6 +113,10 @@ h1 {
 
 a {
   color: inherit;
+}
+
+button {
+  cursor: pointer;
 }
 
 @media (prefers-reduced-motion: no-preference) {
